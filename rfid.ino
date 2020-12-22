@@ -26,8 +26,8 @@ void setup()
   mfrc522.PCD_Init();
   servo.attach(7);
   servo.write(90);
-  Serial.println("Approximate your card to the reader...");
-  Serial.println();
+//  Serial.println("Approximate your card to the reader...");
+//  Serial.println();
   pinMode(BUZZ_PIN, OUTPUT);
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
@@ -46,7 +46,7 @@ void loop()
     return;
   }
   //Show UID on serial monitor
-  Serial.print("UID tag :");
+//  Serial.print("UID tag :");
   String content= "";
   byte letter;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
@@ -57,12 +57,12 @@ void loop()
      content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
   Serial.println();
-  Serial.print("Message : ");
+//  Serial.print("Message : ");
   content.toUpperCase();
   if (content.substring(1) == "04 84 83 6A 80 61 80")
   {
-    Serial.println("Authorized access");
-    Serial.println();
+//    Serial.println("Authorized access");
+//    Serial.println();
     digitalWrite(RED_PIN, LOW);
     digitalWrite(GREEN_PIN, HIGH);
     tone(BUZZ_PIN, 1000, 200);
@@ -74,7 +74,7 @@ void loop()
   }
  
  else   {
-    Serial.println(" Access denied");
+//    Serial.println(" Access denied");
     tone(BUZZ_PIN, 1000, 200);
     delay(3000);
   }
